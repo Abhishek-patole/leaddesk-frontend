@@ -6,8 +6,9 @@ import { ThemeToggle } from './components/ThemeToggle';
 import { Home } from './pages/Home';
 import { Login } from './pages/admin/Login';
 import { Dashboard } from './pages/admin/Dashboard';
+import { NotFound } from './pages/NotFound';
 
-import './App.css'; // Optional if empty, but keeping for now
+
 
 function App() {
   return (
@@ -15,7 +16,7 @@ function App() {
       <BrowserRouter>
         <AuthProvider>
           {/* Global UI Elements */}
-          <div className="fixed top-4 right-4 z-50">
+          <div className="fixed bottom-6 right-6 z-50">
             <ThemeToggle />
           </div>
 
@@ -28,6 +29,9 @@ function App() {
             <Route element={<ProtectedRoute />}>
               <Route path="/admin/dashboard" element={<Dashboard />} />
             </Route>
+
+            {/* Catch-all 404 Route */}
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </AuthProvider>
       </BrowserRouter>
