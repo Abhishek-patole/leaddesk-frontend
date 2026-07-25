@@ -1,5 +1,6 @@
 import { createContext, useContext, useState, useEffect, type ReactNode } from 'react';
 import { api } from '../lib/api';
+import { useToast } from './ToastContext';
 
 interface User {
   email: string;
@@ -20,39 +21,34 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [user, setUser] = useState<User | null>(null);
+  const { success, error } = useToast();
 
   // Silent authentication check on mount
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        // Attempt to hit the refresh endpoint
-        // If a valid refresh cookie exists, it will set a new access token cookie
         await api.post('/api/auth/refresh');
-        
-        // If successful, we are authenticated! 
-        // Note: For a robust app, you might want an endpoint like /api/auth/me to return the exact user details.
-        // For LeadDesk Mini, simply setting authenticated to true is enough for the Admin dashboard.
         setIsAuthenticated(true);
-      } catch (error) {
-        // Refresh failed (no cookie, or expired)
+      } catch (err) {
         setIsAuthenticated(false);
       } finally {
         setIsLoading(false);
       }
     };
-
     checkAuth();
   }, []);
 
   const login = async (credentials: any) => {
     await api.post('/api/auth/login', credentials);
     setIsAuthenticated(true);
-    // Ideally set user details here if returned by the login endpoint
   };
 
   const logout = async () => {
     try {
       await api.post('/api/auth/logout');
+      success('Logged out successfully');
+    } catch (err) {
+      error('Failed to logout');
     } finally {
       setIsAuthenticated(false);
       setUser(null);

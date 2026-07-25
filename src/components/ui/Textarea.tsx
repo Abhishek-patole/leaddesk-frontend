@@ -10,7 +10,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
   ({ className, label, error, ...props }, ref) => {
     return (
       <div className="w-full flex flex-col gap-1.5">
-        <label className="text-sm font-medium text-slate-800 dark:text-slate-200">
+        <label className="text-sm font-semibold text-[var(--text-main)]">
           {label}
         </label>
         <div className="relative">

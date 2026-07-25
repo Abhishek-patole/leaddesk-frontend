@@ -46,10 +46,10 @@ export const LeadForm = () => {
         <div className="w-16 h-16 mx-auto bg-emerald-100 dark:bg-emerald-500/20 rounded-full flex items-center justify-center mb-6">
           <CheckCircle2 className="w-8 h-8 text-emerald-600 dark:text-emerald-400" />
         </div>
-        <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-2">
+        <h3 className="text-2xl font-bold text-[var(--text-main)] mb-2">
           Request Received!
         </h3>
-        <p className="text-slate-600 dark:text-slate-400 mb-8">
+        <p className="text-[var(--text-muted)] mb-8">
           Thank you for reaching out. Our team is reviewing your details and will be in touch shortly.
         </p>
         <Button 
