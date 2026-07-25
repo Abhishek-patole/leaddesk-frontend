@@ -1,75 +1,46 @@
-# React + TypeScript + Vite
+# LeadDesk Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is the beautiful, modern client-side application for LeadDesk. Built with a focus on premium user experience, it features a custom glassmorphic design system and smooth micro-interactions.
 
-Currently, two official plugins are available:
+## 🚀 Tech Stack
+- **Framework**: React 19 + Vite
+- **Styling**: Tailwind CSS (v4) with custom CSS properties for theme variables
+- **Routing**: React Router DOM (v7)
+- **Forms**: React Hook Form + Zod validation
+- **State Management**: React Context (Auth, Toast, Theme)
+- **Icons**: Lucide React
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 🛠 Prerequisites
+- Node.js (v18+)
+- Backend API running locally (or deployed)
 
-## React Compiler
+## ⚙️ Environment Variables
+Create a `.env` file in the root of the frontend directory:
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+```env
+# URL of your deployed backend API (or localhost)
+VITE_API_URL=https://leaddesk-backend-86ze.onrender.com
 ```
+*Note: Vite requires custom environment variables to be prefixed with `VITE_`.*
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 📦 Scripts
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- `npm run dev`: Starts the development server with Hot Module Replacement (HMR).
+- `npm run build`: Compiles the TypeScript code and bundles the app for production.
+- `npm run preview`: Locally previews the production build.
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## 🌐 Deploying to Vercel
 
-```
+This frontend is configured for seamless deployment on [Vercel](https://vercel.com/). A `vercel.json` file is included to ensure React Router's client-side routing works correctly without throwing `404 Not Found` errors when refreshing pages.
+
+### Deployment Steps:
+1. Push this code to a GitHub repository.
+2. Log in to Vercel and click **Add New Project**.
+3. Import your GitHub repository.
+4. Configure the Project:
+   - **Framework Preset**: Vercel should automatically detect **Vite**.
+   - **Root Directory**: If you are using a monorepo, set this to `Frontend`. Otherwise, leave default.
+   - **Build Command**: `npm run build`
+   - **Output Directory**: `dist`
+5. **Environment Variables**: Add `VITE_API_URL` and set it to your deployed backend URL (e.g., `https://leaddesk-backend-86ze.onrender.com`).
+6. Click **Deploy**!
