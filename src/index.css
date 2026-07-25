@@ -1,0 +1,27 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --bg-surface: #ffffff;
+    --bg-card: #f9fafb;
+    --text-main: #0f172a;
+    --text-muted: #64748b;
+    --border-color: #e2e8f0;
+    --brand-primary: #5e6ad2;
+    --brand-hover: #4b55c4;
+  }
+
+  .dark {
+    --bg-surface: #010102;
+    --bg-card: #08090a;
+    --text-main: #f7f8f8;
+    --text-muted: #8a8f98;
+    --border-color: rgba(255, 255, 255, 0.08);
+    --brand-primary: #5e6ad2;
+    --brand-hover: #707ce6;
+  }
+
+  body {
+    @apply bg-[var(--bg-surface)] text-[var(--text-main)] transition-colors duration-300;
+  }
+}
